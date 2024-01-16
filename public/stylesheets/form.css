@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    width: 50%;
+    height: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+    color: #666;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+
+  }
+
+  button {
+    float: right;
+    background-color: rgb(199, 20, 20);
+    border-radius: 3px;
+    color: white;
+    margin-top: 20px;
+  }
+
+  button a {
+    color: white;
+
+  }
+  .submit {
+    margin: 10px;
+  }
+  
+  div {
+    margin : 10px;
+  }
+  
+
+  input[type="submit"] {
+
+    background-color: #ffffff;
+   margin: 20px;
+  }
+
+  .message {
+    text-align: center;
+    color: #666;
+    margin-top: 20px;
+  }
+
+  .eye {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .toggle-password::before {
+    content: "\f06e"; /* Font Awesome eye icon */
+    font-family: 'Font Awesome 5 Free';
+  }
+  
+  .toggle-password.active::before {
+    content: "\f070"; /* Font Awesome eye-slash icon */
+  }
+  
