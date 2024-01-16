@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Find skilled workers for your tasks or become a worker at Mazdoor. Connect with a diverse range of service providers. Stringing together users and workers for seamless employment opportunities.">
+
+  <link rel="icon" href="./images/gomazdoor.png" type="image/x-icon">
+  <link rel="shortcut icon" href="./images/gomazdoor.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://kit.fontawesome.com/your_actual_font_awesome_code.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./stylesheets/pin1.css" class="stylsheet">
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+</head>
+
+<body>
+  <div>
+    <nav>
+      <div class="left">Gomazdoor</div>
+      <div class="right">
+        <ul class="navbar">
+          <li><a target="_blank" href="/">Home</a></li>
+          <li><a target="_blank" href="/mazdoor">Mazdoor</a></li>
+          <li><a target="_blank" href='/Services'>Services</a></li>
+          <li><a target="_blank" href="/profile"> Profile</a></li>
+          <% if (log) { %>
+            <!-- If user is logged in, show logout button -->
+            <li><a class='logout' href="/logout">Logout</a></li>
+            <% } else { %>
+              <!-- If user is not logged in, show login and signup buttons -->
+              <li> <a class="signup" href="/signUp"> signUp</a></li>
+              <li> <a class="login" href="/login"> Login</a></li>
+              <% } %>
+
+        </ul>
+
+        <ul class="sidebar">
+          <svg onclick="hidebar()" class="svg" width="50" height="150" viewBox="0 0 100 100">
+            <!-- Horizontal line of the cross -->
+            <line x1="10" y1="50" x2="90" y2="50" stroke="white" stroke-width="5" />
+
+            <!-- Vertical line of the cross -->
+            <line x1="50" y1="10" x2="50" y2="90" stroke="white" stroke-width="5" />
+          </svg>
+
+          <li><a target="_blank" href="/">Home</a></li>
+          <li><a target="_blank" href="/mazdoor">Mazdoor</a></li>
+          <li><a target="_blank" href='/Services'>Services</a></li>
+          <li><a target="_blank" href="/profile"> Profile</a></li>
+          <% if (log) { %>
+            <!-- If user is logged in, show logout button -->
+            <li><a class='logout' href="/logout">Logout</a></li>
+            <% } else { %>
+              <!-- If user is not logged in, show login and signup buttons -->
+              <li> <a class="signup" href="/signUp"> signUp</a></li>
+              <li> <a class="login" href="/login"> Login</a></li>
+              <% } %>
+
+
+
+        </ul>
+
+        <span onclick="navbar()" class="material-symbols-outlined">
+          menu
+        </span>
+
+        <script>
+          function navbar() {
+            const sidebar = document.querySelector('.sidebar')
+            sidebar.style.display = 'flex'
+          }
+        </script>
+
+        <script>
+          function hidebar() {
+            const sidebar = document.querySelector('.sidebar')
+            sidebar.style.display = 'none'
+          }
+        </script>
+
+      </div>
+    </nav>
+  </div>
+
+  <div class="container"><%= title %></div>
+  <div class="homecards">
+   
+    <div class="card">
+      <img src="./images/add.png" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">Add user</h5>
+        <p class="card-text">Click here to add yourself as mazdoor, that anyone can find you</p>
+        <a href="/add-mazdoor" class="btn btn-primary">Add</a>
+      </div>
+    </div>
+    
+    <div class="card">
+      <img src="./images/dummy.jpg" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">All </h5>
+        <p class="card-text">Here you can find all type of mazdoor</p>
+        <a href="/mazdoorall" class="btn btn-primary">All</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="./images/builder.png" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">Normal mazdoor</h5>
+        <p class="card-text">A labourer is an individual who engages in physical work or manual tasks, often
+          involving hands-on effort and basic skills.</p>
+        <a href="/users/NormalMazdoor" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./images/doctor.png" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">doctor</h5>
+        <p class="card-text">A doctor is a highly trained and skilled medical professional dedicated to
+          diagnosing, treating, and preventing illnesses.</p>
+        <a href="/users/doctor" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="./images/mechanic.png" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">mechanic</h5>
+        <p class="card-text">A mechanic is a skilled technician specializing in the repair, maintenance, and
+          troubleshooting of vehicles and machinery.</p>
+        <a href="/users/mechanic" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+
+
+    <div class="card">
+      <img src="./images/teacher.png" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">Teacher</h5>
+        <p class="card-text">A teacher is an educational facilitator who imparts knowledge, guides learning, and fosters
+          the intellectual and personal development of students.</p>
+        <a href="/users/teacher" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+
+
+    <div class="card">
+      <img src="./images/technician.png" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">technician</h5>
+        <p class="card-text">A technician is a skilled professional who specializes in the practical application of
+          technical knowledge and expertise to troubleshoot machinery.</p>
+        <a href="/users/technician" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+
+
+    <div class="card">
+      <img src="./images/farmer.png" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">Farmer</h5>
+        <p class="card-text">A farmer is an agricultural practitioner engaged in cultivating the land, contributing to
+          the production of food and raw materials .</p>
+        <a href="/users/farmer" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="./images/taxidriver.jpg" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">Driver</h5>
+        <p class="card-text">A driver is an individual skilled in operating and navigating vehicles, responsible for
+          transporting people, goods, or materials from one location to another in a safe and efficient manner.</p>
+        <a href="/users/driver" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+
+
+    <div class="card">
+      <img src="./images/washerman.png" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">Washerman</h5>
+        <p class="card-text">A washerman is a professional who specializes in laundering and cleaning clothes ensuring
+          garments are properly cleaned and
+          maintained.</p>
+        <a href="/users/washerman" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="./images/plumber.png" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">Plumber</h5>
+        <p class="card-text">A plumber is a skilled tradesperson who specializes in installing, maintaining, and
+          repairing plumbing systems, including pipes in residential, commercial, or industrial settings.</p>
+        <a href="/users/plumber" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="./images/painter.jpeg" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">Painter</h5>
+        <p class="card-text">A painter is an artist or skilled professional who uses various techniques and mediums to
+          create visual artwork, typically applying paint to surfaces such as canvases.</p>
+        <a href="/users/painter" class="btn btn-primary">Go </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="./images/electrician.png" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">Electrician</h5>
+        <p class="card-text">An electrician is a trained professional specializing in the installation, maintenance, and
+          repair of electrical systems, wiring, and equipment.</p>
+        <a href="/users/electrician" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="./images/tution-teacher.png" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">Tution-teacher</h5>
+        <p class="card-text">A tuition teacher is an educational professional who provides personalized academic instruction to students outside of a traditional classroom setting.</p>
+        <a href="/users/tution-teacher" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="./images/tractor.png" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">Tractor-driver</h5>
+        <p class="card-text">A tractor driver is an operator skilled in driving and maneuvering tractors, commonly employed in agriculture for tasks like plowing, planting, and harvesting crops.</p>
+        <a href="/users/tractor-driver" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./images/child-keeper.png" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">child-keeper</h5>
+        <p class="card-text">A child-keeper is a caregiver responsible for nurturing and safeguarding the well-being of children, ensuring their safety, providing support, and fostering their development in a positive and caring environment.</p>
+        <a href="/users/child-keeper" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="./images/carpanter.png" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">Carpanter</h5>
+        <p class="card-text">A carpenter is a skilled tradesperson who works with wood, crafting and repairing structures, furniture, and various wooden items using tools such as saws, drills, and chisels.</p>
+        <a href="/users/carpanter" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="./images/cook.png" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">Cook</h5>
+        <p class="card-text">A cook is a skilled individual who prepares and cooks food, demonstrating expertise in culinary techniques, flavor combinations, and food presentation.</p>
+        <a href="/users/cook" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+    
+    <div class="card">
+      <img src="./images/jcb.png" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">JCB-operator</h5>
+        <p class="card-text">A JCB operator is a skilled professional responsible for operating JCB machines, which are heavy-duty construction equipment commonly used in excavation, earthmoving, and construction projects. </p>
+        <a href="/users/jcb-operator" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="./images/crane.png" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">Crane-operator</h5>
+        <p class="card-text">A crane operator is a skilled professional responsible for operating and controlling cranes, heavy machinery used for lifting, moving, and positioning materials on construction sites, industrial facilities, or shipping yards.</p>
+        <a href="/users/crane-operator" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="./images/dummy.jpg" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">other</h5>
+        <p class="card-text">other workers</p>
+        <a href="/users/other" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+  <div class="footer">
+    <div class="footer1">
+      <h5>Content</h5>
+      <p><a href="/">Home</a></p>
+      <p><a href="/mazdoor">Mazdoor</a></p>
+      <p><a href="/Services">service</a></p>
+      <p><a href="/profile">Profile</a></p>
+    </div>
+
+    <div class="footer1">
+      <h5>About Application</h5>
+      <p><a href="">How application works</a></p>
+      <p><a href="">About us</a></p>
+      <p><a href="">License</a></p>
+
+    </div>
+    <hr>
+    <div class="container">
+      Business Email : moolchandsaini045@gmail.com
+    </div>
+    <hr>
+    <div class="container">
+      Copyrights 2024- . All rights reserved. <a href="/privacy" target="_blank">Privacy</a> | <a href="/terms" target="_blank">Terms & conditions</a>
+    </div>
+
+  </div>
+</body>
+
+</html>

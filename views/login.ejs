@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="./images/gomazdoor.png" type="image/x-icon">
+  <link rel="shortcut icon" href="./images/gomazdoor.png" type="image/x-icon">
+  <link rel="stylesheet" href="./stylesheets/form.css" class="stylsheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha384-7T5bN8Q90I6zWxFi6Vy5UpBZDx4c+ErmpI1V6SvpcOGngB+Zui4glPWR6e83YI6V" crossorigin="anonymous">
+
+  <title>Log in</title>
+  <style>
+   .password-container {
+    position: relative;
+}
+
+.eye {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-100%);
+    cursor: pointer;
+    user-select: none;
+}
+
+.toggle-password::before {
+    content: "\f06e"; /* Font Awesome eye icon */
+    font-family: 'Font Awesome 5 Free';
+}
+
+.toggle-password.active::before {
+    content: "\f070"; /* Font Awesome eye-slash icon */
+}
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Login</h1>
+    <% if (message) { %>
+        <p><%= message %></p>
+    <% } %>
+    
+    <form action="/login" method="POST">
+        <label for="email">email:</label>
+        <input type="text" id="email" name="email" required>
+
+<div class="password-container">
+        <label for="Password">Password:</label>
+        <input type="password" id="Password" name="Password">
+        <span toggle="#Password" class="eye toggle-password"> &#x1F441;</span></div>
+
+        <button type="submit">Login</button>
+       
+       <p class="message">Not registered? or new user  <a href="/signup">Create an account</a></p>
+       </form>
+
+   
+
+    
+    
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggles = document.querySelectorAll('.toggle-password');
+  
+      toggles.forEach(function (toggle) {
+        toggle.addEventListener('click', function () {
+          const target = document.querySelector(this.getAttribute('toggle'));
+          this.classList.toggle('active');
+  
+          // Toggle the type attribute of the password input
+          const type = target.type === 'password' ? 'text' : 'password';
+          target.type = type;
+        });
+      });
+    });
+  </script>
+
+</body>
+
+</html>

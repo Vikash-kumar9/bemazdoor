@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="./images/gomazdoor.png" type="image/x-icon">
+  <link rel="shortcut icon" href="./images/gomazdoor.png" type="image/x-icon">
+  <link rel="stylesheet" href="./stylesheets/form.css" class="stylsheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha384-7T5bN8Q90I6zWxFi6Vy5UpBZDx4c+ErmpI1V6SvpcOGngB+Zui4glPWR6e83YI6V" crossorigin="anonymous">
+
+  <title>Sign In</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 50%;
+      height: 700px;
+      margin: 100px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: #666;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 95%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+
+    }
+
+    button {
+      float: right;
+      background-color: rgb(199, 20, 20);
+      border-radius: 3px;
+      color: white;
+    }
+
+    button a {
+      color: white;
+
+    }
+    .submit {
+      margin: 10px;
+    }
+    
+    div {
+      margin : 10px;
+    }
+    
+
+    input[type="submit"] {
+
+      background-color: #ffffff;
+     margin: 20px;
+    }
+
+    .message {
+      text-align: center;
+      color: #666;
+      margin-top: 20px;
+    }
+ 
+    .password-container {
+    position: relative;
+}
+
+.eye {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-100%);
+    cursor: pointer;
+    user-select: none;
+}
+
+.toggle-password::before {
+    content: "\f06e"; /* Font Awesome eye icon */
+    font-family: 'Font Awesome 5 Free';
+}
+
+.toggle-password.active::before {
+    content: "\f070"; /* Font Awesome eye-slash icon */
+}
+    
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Sign up</h2>
+    <form action="/signup"  method="post" onsubmit="return validateForm()" >
+      <div>
+      <label for="username"> username</label>
+      <input type="text"  name="username"   >
+      
+    </div>
+    
+      <div>
+      <label for="email"> Email</label>
+      <input type="text"  name="email" placeholder="Enter your Email" >
+    </div>
+     
+      <div  class="password-container">
+        <label for="Password">Password:</label>
+        <input type="password" id="Password" name="Password">
+        <span toggle="#Password" class="eye toggle-password"> &#x1F441;</span>
+    </div>
+     <div>
+    <label>
+      <input type="checkbox" id="termsCheckbox" name="termsCheckbox">
+      I agree to the <a href="/terms" >Terms and Services</a> <a href="/privacy">privacy policies</a>
+  </label>
+</div>
+    
+      <div>
+      <input class="submit" type="submit" value="Submit">
+    </div>
+    </form>
+
+   
+    
+  </div>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggles = document.querySelectorAll('.toggle-password');
+
+    toggles.forEach(function (toggle) {
+      toggle.addEventListener('click', function () {
+        const target = document.querySelector(this.getAttribute('toggle'));
+        this.classList.toggle('active');
+
+        // Toggle the type attribute of the password input
+        const type = target.type === 'password' ? 'text' : 'password';
+        target.type = type;
+      });
+    });
+  });
+</script>
+
+<script>
+  function validateForm() {
+      // Check if the terms checkbox is checked
+      if (!document.getElementById('termsCheckbox').checked) {
+          alert('Please accept the Terms and Services before submitting the form.');
+          return false; // Prevent form submission
+      }
+      // Additional validation logic can be added here if needed
+      return true; // Allow form submission
+  }
+</script>
+
+</body>
+
+</html>

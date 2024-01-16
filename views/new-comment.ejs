@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title><%= title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="./images/gomazdoor.png" type="image/x-icon">
+  <link rel="shortcut icon" href="./images/gomazdoor.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+   
+    <style>
+     #port {
+    height: calc(100vh - 80px); /* Adjusted height to leave space for the fixed form */
+    overflow-y: auto;
+    padding: 10px;
+    margin-bottom: 80px; /* Same as the height adjustment above */
+}
+
+#commentList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#commentList li {
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+#commentList li strong {
+    font-weight: bold;
+}
+
+#commentList li button {
+    background-color: #cc0000;
+    color: white;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+}
+
+#commentList li button:hover {
+    background-color: #990000;
+}
+
+.container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
+}
+
+#commentForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#commentText {
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #1558d6;
+}
+
+
+        
+       
+        
+    </style>
+</head>
+
+<body>
+    <div class="" id="port" style="height: 100vh; overflow-y: auto;">
+        <h2>Comments for User <%= portalData[0].username %></h2>
+        <!-- Display comments here -->
+        <ul id="commentList" style="padding-bottom: 60px;">
+            <!-- Adjust the padding as needed -->
+            <% portalData[0].comments.forEach(comment => { %>
+                <li>
+                    <% if (comment.user) { %>
+                        <strong><%= comment.user.username %>:</strong> <%= comment.text %>
+                        <span style="color: #888; font-size: 0.8em;"><%= moment(comment.created).fromNow() %></span>
+                        <% if (isLoggedIn && comment.user._id.toString() === loggedInUser._id.toString()) { %>
+                            <button onclick="deleteComment('<%= comment._id %>')">Delete</button>
+                        <% } %>
+                    <% } else { %>
+                        <!-- Handle the case where comment.user is null or undefined -->
+                        <span>Unknown User:</span> <%= comment.text %>
+                        <span style="color: #888; font-size: 0.8em;"><%= moment(comment.created).fromNow() %></span>
+                    <% } %>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+    
+    <div class="container" style="position: fixed; bottom: 0; left: 0; right: 0; background-color: white; padding: 10px;">
+        <!-- Form to add a new comment -->
+        <form id="commentForm" action="/add-comment" method="post">
+            <input type="hidden" name="cardId" value="<%= portalData[0].id %>">
+            <div class="form-group">
+                <label for="commentText">Add a comment:</label>
+                <textarea class="form-control" id="commentText" name="commentText" rows="3" required></textarea>
+            </div>
+            <button type="button" onclick="submitComment()" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    
+    <script>
+        function closeCommentPage() {
+            window.close();
+        }
+    
+        function submitComment() {
+            const cardId = document.getElementById('commentForm').elements['cardId'].value;
+            const commentText = document.getElementById('commentText').value;
+    
+            // Send an AJAX request to add the comment
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/add-comment', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+    
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    // Reload the page after successful submission
+                    location.reload();
+                } else {
+                    console.error('Error adding comment:', xhr.statusText);
+                }
+            };
+    
+            xhr.onerror = function () {
+                console.error('Request failed');
+            };
+    
+            xhr.send(JSON.stringify({
+                cardId: cardId,
+                commentText: commentText
+            }));
+        }
+    
+        function deleteComment(commentId) {
+            console.log('Attempting to delete comment with ID:', commentId);
+    
+            // Send an AJAX request to delete the comment
+            const xhr = new XMLHttpRequest();
+            xhr.open('DELETE', `/delete-comment/${commentId}`, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+    
+            xhr.onload = function () {
+                console.log('Delete request status:', xhr.status);
+                if (xhr.status === 204) {
+                    // Reload the page after successful deletion
+                    location.reload();
+                } else {
+                    console.error('Error deleting comment:', xhr.statusText);
+                }
+            };
+    
+            xhr.onerror = function () {
+                console.error('Request failed');
+            };
+    
+            xhr.send();
+        }
+    
+        function closeCommentPage() {
+            // Redirect the user to another page
+            window.location.href = '/portal'; // Change this URL to the desired destination
+        }
+    </script>
+</body>
+
+</html>
